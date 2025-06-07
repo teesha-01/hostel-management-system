@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col">
+  <h1 class="header-text"> Complaints </h1>
+  <table class="table">
+ 
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Student</th>
+    </tr>
+    {% for complaint in complaints %}
+      <tr>
+        <td>{{ complaint.0 }}</td>
+        <td>{{ complaint.1 }}</td>
+        <td>{{ complaint.2}}</td>
+        <td>{{ complaint.3 }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col"><h1 class="header-text"> Applications </h1>
+
+  <table class="table table-striped">
+ 
+    <tr>
+      <th>ID</th>
+      <th>Room Type</th>
+      <th>Occupancy</th>
+      <th>Applicant ID</th>
+    </tr>
+    {% for complaint in applications %}
+      <tr>
+        <td>{{ complaint.0 }}</td>
+        <td>{{ complaint.1 }}</td>
+        <td>{{ complaint.2}}</td>
+        <td>{{ complaint.4 }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+    </div>
+{% endblock %}

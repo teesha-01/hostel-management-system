@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hostel Management System</title>
+    {% load static %}
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body {
+        background-image: url('{% static "background-image.jpg" %}');
+        background-size: cover;
+        font-family: "Franklin Gothic Medium", sans-serif;
+    }
+
+    .left-text {
+        font-family: "Franklin Gothic Medium", sans-serif;
+        font-weight: bolder;
+        font-size: 6em;
+        color: white;
+        width: 45%;
+    }
+
+    .header-text {
+        font-family: "Franklin Gothic Medium", sans-serif;
+        font-weight: bolder;
+        font-size: 4em;
+        color: white;
+
+    }
+
+    .navbar-brand {
+        font-family: "Franklin Gothic Medium", sans-serif;
+        font-weight: bolder;
+        font-size: xx-large;
+        color: teal;
+
+    }
+
+    #sub-text {
+        font-size: 1.5em;
+        color: white;
+        font-family: "Fira Code", sans-serif;
+    }
+</style>
+<body>
+<nav class="navbar navbar-expand-lg  bg-light">
+    <a class="navbar-brand" href="/">University Hostel</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            {% if user.is_admin %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'fetch_applications' %}">Applications </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'fetch_complaints' %}">Complaints</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Dashboard</a>
+                </li>
+
+            {% endif %}
+
+
+        </ul>
+
+
+        {% if user.is_authenticated %}
+
+            <span class="navbar-text">
+
+      <button class="btn btn-primary">
+          <a style="color: white" href="{% url 'logout' %}">Logout {{ user.username }}</a>
+      </button>
+            </span>
+
+
+        {% else %}
+            <span class="navbar-text">
+      <p><a href="{% url 'signup' %}" class="btn btn-primary btn">Signup</a></p>
+
+
+    </span>
+
+        {% endif %}
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="left-text">Your Home Away From Home</h1>
+        </div>
+        <div class="col d-flex justify-content-center align-items-center">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
